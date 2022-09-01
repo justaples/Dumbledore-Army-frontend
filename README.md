@@ -13,3 +13,17 @@ Based on the book **Harry Potter and the Order of the Phoenix** by J. K. Rowling
 
 ### Frontend
 - React
+
+## Models
+### Members
+- Name
+- Age
+- Picture
+- House
+
+### Spells
+- Spell
+- Type
+- Primary use
+- Effect
+
