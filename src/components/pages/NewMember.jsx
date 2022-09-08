@@ -40,8 +40,19 @@ const NewMember = ({addMember}) => {
         <label htmlFor='age'>Age</label>
         <input id='age' name='age' type='text' onChange={handleChange}/>
 
+        {/* <label htmlFor='house'>House</label>
+        <select name="house" id="house">
+            <option value="Gryffindor">Gryffindor</option>
+            <option value="Ravenclaw">Ravenclaw</option>
+            <option value="Hufflepuff">Hufflepuff</option>
+            <option value="Slytherin">Slytherin</option>
+        </select> */}
+
         <label htmlFor='house'>House</label>
         <input id='house' name='house' type='text' onChange={handleChange}/>
+
+
+
 
         <label htmlFor='picture'>Picture</label>
         <input id='picture' name='picture' type='text' onChange={handleChange}/>

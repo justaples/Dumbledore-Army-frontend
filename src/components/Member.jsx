@@ -8,6 +8,7 @@ const Member = ({spell, member}) => {
         <Link to={`/members/${member.id}`}>
             <h1>{member.name}</h1>
         </Link>
+          {/* <p>{member.age}</p> */}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 
 const MemberView = ({members, updateMemberState}) => {
@@ -22,12 +22,13 @@ console.log(member)
         .then(res => {
             console.log(res)
             updateMemberState(id)
-            navigate('/members')
+            navigate('/members/')
         })
     }
 
   return (
     <div>
+        <Link to ={`/members/edit/${member.id}`}>Edit member information</Link>
         <h1>{member.name}</h1>
         <p>{member.age}</p>
         <p>{member.house}</p>
