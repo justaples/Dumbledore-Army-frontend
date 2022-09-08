@@ -41,6 +41,14 @@ const addMember = (member) =>{
   setMembers([...members, member])
 }
 
+const updateMemberState = (id) => {
+  setMembers(members.filter(member => member.id !== id))
+}
+
+const updateSpellState = (id) => {
+  setSpells(spells.filter(spell => spell.id !== id))
+}
+
   return (
     <div className="App">
       <nav>
@@ -55,8 +63,8 @@ const addMember = (member) =>{
         <Route path='/new-member' element= {<NewMember addMember={addMember} />} />
         <Route path='/new-spell' element= {<NewSpell addSpell={addSpell} />} />
         <Route path='/umbridge' element={<Umbridge />} />
-        <Route path='/spells/:id' element={<SpellView spells={spells}/>} />
-        <Route path='/members/:id' element={<MemberView members={members}/>} />
+        <Route path='/spells/:id' element={<SpellView spells={spells} updateSpellState = {updateSpellState}/>} />
+        <Route path='/members/:id' element={<MemberView members={members} updateMemberState={updateMemberState}/>} />
         <Route path='*' element={<Navigate to='/' replace />} />
 
       </Routes>

@@ -27,7 +27,7 @@ const NewMember = ({addMember}) => {
         .then(res => {
             setFormData(initialState)
             addMember({...res.data})
-            navigate('/', {replace:true})
+            navigate('/members', {replace:true})
         })
     }
 

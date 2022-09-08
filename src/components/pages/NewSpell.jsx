@@ -8,7 +8,7 @@ const NewSpell = ({addSpell}) => {
     type: '',
     use: '',
     effect: '',
-    // members:
+    // members: ''
 }
 
 const navigate = useNavigate()
@@ -27,7 +27,7 @@ const handleSubmit = (e) => {
     .then(res => {
         setFormData(initialState)
         addSpell({...res.data})
-        navigate('/', {replace:true})
+        navigate('/spells', {replace:true})
     })
 }
   return (
@@ -45,8 +45,8 @@ const handleSubmit = (e) => {
         <label htmlFor='effect'>Effect</label>
         <input id='effect' name='effect' type='text' onChange={handleChange}/>
         
-        {/* <label htmlFor='picture'>Members</label>
-        <input id='picture' name='picture' type='text' onChange={handleChange}/> */}
+        {/* <label htmlFor='members'>Members</label>
+        <input id='members' name='members' type='text' onChange={handleChange}/> */}
 
         <input type='submit' value='Add Spell' />
 

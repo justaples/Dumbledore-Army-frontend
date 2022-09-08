@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const MemberView = ({members}) => {
+const MemberView = ({members, updateMemberState}) => {
+
     let {id} = useParams()
-
+    let navigate = useNavigate()
+  
     const [member, setMember] = useState([])
 
     useEffect(() => {
@@ -14,12 +17,22 @@ const MemberView = ({members}) => {
 
 console.log(member)
 
+    const deleteMember = (id) => {
+        axios.delete(`http://localhost:8000/members/${id}`)
+        .then(res => {
+            console.log(res)
+            updateMemberState(id)
+            navigate('/members')
+        })
+    }
+
   return (
     <div>
         <h1>{member.name}</h1>
         <p>{member.age}</p>
         <p>{member.house}</p>
         <img src={member.picture} alt="" />
+        <button onClick={() => deleteMember(member.id)}>Delete</button>
     </div>
   )
 }
