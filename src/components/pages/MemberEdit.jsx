@@ -66,7 +66,7 @@ const MemberEdit = ({setMembers}) => {
         <label htmlFor='picture'>Picture</label>
         <input id='picture' name='picture' type='text' value={formData?.picture} onChange={handleChange}/>
 
-        <input type='submit' value='Add Member' />
+        <input type='submit' value='Update Member' />
         </form>
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,13 +23,27 @@ const handleChange = (e) => {
 const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
-    axios.post('http://localhost:8000/spells/', formData)
+    axios.post('http://localhost:8000/spells/',
+     {...formData, members:[formData.members]}
+    // formData
+
+     )
     .then(res => {
         setFormData(initialState)
         addSpell({...res.data})
         navigate('/spells', {replace:true})
     })
 }
+
+const [members, setMembers] = useState([])
+
+
+useEffect(() => {
+  fetch('http://localhost:8000/members')
+  .then(res => res.json())
+  .then( items => setMembers(items))
+}, [])
+
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -43,8 +57,20 @@ const handleSubmit = (e) => {
         <input id='use' name='use' type='text' onChange={handleChange}/>
 
         <label htmlFor='effect'>Effect</label>
-        <input id='effect' name='effect' type='text' onChange={handleChange}/>
+        <textarea id='effect' name='effect' rows="8" cols="50" type='text' onChange={handleChange}/>
         
+        {(members.map(member =>{
+            return <div>
+              <label htmlFor="members">{member.name}</label>
+              <input id ="members" type="checkbox" value={member.id} onChange={handleChange} />
+              </div>
+            } ))}
+{/*         
+        {(members.map(member =>{
+            return <select name="members" id="members">
+              <option value=''>{member.name}</option>
+            </select>} ))} */}
+
         {/* <label htmlFor='members'>Members</label>
         <input id='members' name='members' type='text' onChange={handleChange}/> */}
 

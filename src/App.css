@@ -1,8 +1,17 @@
 .App {
   text-align: center;
+  height: 100vh;
+  background-image: url('../public/img/wall.jpeg');
+  background-repeat: no-repeat; 
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: auto;
+  /* background-color: rgba(0, 0, 0, 0.234); */
 }
 
-.App-logo {
+
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +44,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

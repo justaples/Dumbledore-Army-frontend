@@ -67,7 +67,7 @@ const updateSpellState = (id) => {
         <Route path='/umbridge' element={<Umbridge />} />
         <Route path='/spells/edit/:id' element={<SpellEdit setSpells={setSpells}/>} />
         <Route path='/members/edit/:id' element={<MemberEdit setMembers={setMembers}/>} />
-        <Route path='/spells/:id' element={<SpellView spells={spells} updateSpellState = {updateSpellState}/>} members={members} />
+        <Route path='/spells/:id' element={<SpellView spells={spells} updateSpellState = {updateSpellState} members={members}/> }  />
         <Route path='/members/:id' element={<MemberView members={members} updateMemberState={updateMemberState}/>} />
         <Route path='*' element={<Navigate to='/' replace />} />
 
