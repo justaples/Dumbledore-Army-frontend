@@ -59,12 +59,12 @@ useEffect(() => {
         <label htmlFor='effect'>Effect</label>
         <textarea id='effect' name='effect' rows="8" cols="50" type='text' onChange={handleChange}/>
         
-        {(members.map(member =>{
+        {/* {(members.map(member =>{
             return <div>
               <label htmlFor="members">{member.name}</label>
               <input id ="members" type="checkbox" value={member.id} onChange={handleChange} />
               </div>
-            } ))}
+            } ))} */}
 {/*         
         {(members.map(member =>{
             return <select name="members" id="members">

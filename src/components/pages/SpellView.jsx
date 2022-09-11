@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
+import Modal from 'react-modal/lib/components/Modal'
 import MembersInSpells from '../MembersInSpells'
+import SpellEdit from './SpellEdit'
 
 const Spell = styled.div`
   .spell-container{
@@ -35,7 +37,20 @@ const Spell = styled.div`
   .col-1{
     width: 300px;
   }
-`
+
+  `
+
+  const customStyles = {
+  content: {
+    border: '2px solid black',
+    top: '20%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    // marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 const SpellView = ({spells, updateSpellState}) => {
 
@@ -58,8 +73,8 @@ const SpellView = ({spells, updateSpellState}) => {
     .then( items => setMembers(items))
     }, [])
 
-    console.log(members)
-    console.log(spell)
+    // console.log(members)
+    // console.log(spell)
 
     const deleteSpell = (id) => {
       axios.delete(`http://localhost:8000/spells/${id}`)
@@ -69,11 +84,37 @@ const SpellView = ({spells, updateSpellState}) => {
           navigate('/spells')
       })
   }
-    // const [check, setCheck] = useState(false)
+    let subtitleDel;
+    const [delModalIsOpen, setDelIsOpen] = React.useState(false);
 
-    // const handleCheckMark = () =>{
-    //   setCheck(!check)
-    // }
+    function openDelModal() {
+      setDelIsOpen(true);
+    }
+  
+    function afterOpenDelModal() {
+      // references are now sync'd and can be accessed.
+      subtitleDel.style.color = 'black';
+    }
+  
+    function closeDelModal() {
+      setDelIsOpen(false);
+    }
+
+    let subtitleEdit;
+    const [editModalIsOpen, setIsEditOpen] = React.useState(false);
+
+    function openEditModal() {
+      setIsEditOpen(true);
+    }
+  
+    function afterOpenEditModal() {
+      // references are now sync'd and can be accessed.
+      subtitleEdit.style.color = 'black';
+    }
+  
+    function closeEditModal() {
+      setIsEditOpen(false);
+    }
 
   return (
     <Spell>
@@ -83,9 +124,48 @@ const SpellView = ({spells, updateSpellState}) => {
         <p>Type: {spell.type}</p>
         <p>Use: {spell.use}</p>
         <p>Effect: {spell.effect}</p>
-        <Link to ={`/spells/edit/${spell.id}`}>Edit spell information</Link>
-        <button onClick={() => deleteSpell(spell.id)}>Delete</button>
+        {/* <Link to ={`/spells/edit/${spell.id}`}>Edit spell information</Link> */}
+
+        {/* ----- Button below opens the modal to edit spell ----- */}
+        <button onClick={openEditModal}>Edit Spell</button>
+
+        {/* ----- Modal to edit spell below ----- */}
+        <Modal
+        ariaHideApp={false}
+        isOpen={editModalIsOpen}
+        onAfterOpen={afterOpenEditModal}
+        onRequestClose={closeEditModal}
+        style={customStyles}
+        contentLabel="Edit Modal"
+        >
+        <h2 ref={(_subtitleEdit) => (subtitleEdit = _subtitleEdit)}>Edit Spell Information</h2>
+        <SpellEdit closeEditModal={closeEditModal} />
+        <button onClick={closeEditModal}>X</button>
+        </Modal>
+        {/* ----- Modal to edit spell above ----- */}
         
+
+        {/* ----- Button below opens the modal to delete spell ----- */}
+        <button onClick={openDelModal}>Delete Spell</button>
+
+        {/* ----- Modal to delete spell below ----- */}
+        <Modal
+        ariaHideApp={false}
+        isOpen={delModalIsOpen}
+        onAfterOpen={afterOpenDelModal}
+        onRequestClose={closeDelModal}
+        style={customStyles}
+        contentLabel="Delete Modal"
+        >
+        <h2 ref={(_subtitleDel) => (subtitleDel = _subtitleDel)}>Are you sure you want to delete this spell?</h2>
+        <button onClick={closeDelModal}>X</button>
+        <button onClick={() => deleteSpell(spell.id)}>Delete</button>
+        </Modal>
+        {/* ----- Modal to delete spell above ----- */}
+        
+
+{/* 
+
           <table className='table'>
             <thead>
               <tr>
@@ -101,9 +181,9 @@ const SpellView = ({spells, updateSpellState}) => {
                         </tr>
                       </tbody>)
                     })}
-          </table>
+          </table> */}
 
-{/* 
+
 <table>
             <thead>
               <tr>
@@ -118,7 +198,7 @@ const SpellView = ({spells, updateSpellState}) => {
                 )
               })}
             </tbody>
-          </table> */}
+          </table>
 
 
 

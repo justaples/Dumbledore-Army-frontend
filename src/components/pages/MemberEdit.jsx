@@ -28,8 +28,8 @@ const MemberEdit = ({setMembers}) => {
       axios.put(`http://localhost:8000/members/${id}/`, formData)
       .then(res => {
         setFormData(initialState)
-        setMembers(res.data)
-        navigate(`/members/${id}`, {replace: true})
+        window.location.reload()
+        // navigate(`/members/${id}`, {replace: true})
       })
     }
 

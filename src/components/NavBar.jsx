@@ -61,19 +61,34 @@ const NavContainer = styled.div`
 }
 `
 
-const NavBar = () => {
-  return (
-    <NavContainer>
-      <div className="navBar">
-
-            <Link className='links hvr-buzz' to={'/members'}>Members</Link>
-            <Link className='links hvr-buzz' to={'/spells'}>Spells</Link>
-            <Link className='links hvr-buzz' to={'/new-member'}>New Member</Link>
-            <Link className='links hvr-buzz' to={'/new-spell'}>New Spell</Link>
-            {/* <Link to={'/umbridge'}>Umbridge is coming!</Link> */}
-      </div>
-    </NavContainer>
-  )
+const NavBar = ({ user, handleLogout }) => {
+console.log(user)
+  if(user){
+    return (
+      <NavContainer>
+        <div className="navBar">
+  
+              <Link className='links hvr-buzz' to={'/members'}>Members</Link>
+              <Link className='links hvr-buzz' to={'/spells'}>Spells</Link>
+              <Link className='links hvr-buzz' to={'/new-member'}>New Member</Link>
+              <Link className='links hvr-buzz' to={'/new-spell'}>New Spell</Link>
+              <a href="https://justaples.github.io/Harry-Potter-Trivia/" className='links hvr-buzz' target='_blank' rel='noreferrer'>Play Trivia</a>
+              {/* <p>Hello {user.username}</p> */}
+              <Link className='links hvr-buzz' to={'/home'} onClick={handleLogout}>Umbridge is coming <br />Log out!!</Link>
+        </div>
+      </NavContainer>
+    )
+  } else {
+    return (
+      <NavContainer>
+        <div className="navBar">
+              <Link className='links hvr-buzz' to={'/login'}>Login</Link>
+              <Link className='links hvr-buzz' to={'/signup'}>Sign Up</Link>
+              {/* <Link to={'/umbridge'}>Umbridge is coming!</Link> */}
+        </div>
+      </NavContainer>
+    )
+  }
 }
 
 export default NavBar

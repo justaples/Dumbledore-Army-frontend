@@ -28,8 +28,8 @@ const SpellEdit = ({setSpells}) => {
       axios.put(`http://localhost:8000/spells/${id}/`, formData)
       .then(res => {
         setFormData(initialState)
-        setSpells(res.data)
-        navigate(`/spells/${id}`, {replace: true})
+        window.location.reload()
+        // navigate(`/spells/${id}`, {replace: true})
       })
     }
 
@@ -57,7 +57,7 @@ const SpellEdit = ({setSpells}) => {
         {/* <label htmlFor='members'>Members</label>
         <input id='members' name='members' type='text' onChange={handleChange}/> */}
 
-        <input type='submit' value='Add Spell' />
+        <input type='submit' value='Edit Spell' />
 
 
     </form>

@@ -1,16 +1,23 @@
 import React, {useEffect, useState} from 'react'
-import ReactDOM from 'react-dom';
 import SpellView from './pages/SpellView'
 
 const MembersInSpells = ({member, index}) => {
 
-    const [check, setCheck] = useState(localStorage.getItem('check') ==='false')
+    const [check, setCheck] = useState(false)
 
     useEffect(() => {
-      localStorage.setItem('check', check)
-    },[check]);
+      const localStorageToggled = localStorage.getItem("check");
+
+      if (localStorageToggled) {
+        setCheck(localStorageToggled === "true" ? true : false);
+      } else {
+        localStorage.setItem("check", `${check}`);
+      }
+    }, []);
+
 
     const handleCheckMark = () =>{
+      localStorage.setItem('check', `${check}`)
       setCheck(!check)
     }
 
