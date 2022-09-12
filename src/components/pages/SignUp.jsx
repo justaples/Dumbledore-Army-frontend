@@ -23,8 +23,8 @@ const SignUp = ({handleSignupOrLogin}) => {
         try{
           await userService.signup(formData);
           console.log('got past userService.signup')
-          handleSignupOrLogin();
-          navigate('/')
+          // handleSignupOrLogin();
+          navigate('/login')
           console.log('got to navigate')
         }
         catch(err){

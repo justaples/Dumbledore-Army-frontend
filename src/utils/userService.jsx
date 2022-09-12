@@ -17,6 +17,7 @@ function login(creds){
 
 
 function signup(user) {
+  
   return fetch(BASE_URL + 'register/', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json'}),
@@ -24,15 +25,23 @@ function signup(user) {
   }
   )
   .then(res => {
-    if (res.ok) return res.json();
+    console.log('fetch done')
+    if (res.ok){
+      return res.json();
+    } else {
+      throw new Error('Email already taken!');
+    }
     // Probably a duplicate email
-    throw new Error('Email already taken!');
   })
-  .then(({token}) => {
-    tokenService.setToken(token)
-  });
+  // .then((token) => {
+  //   tokenService.setToken(token)
+  //   console.log('returning token', token)
+  // });
+  // .then(res =>{
+  //   console.log('redirecting')
+  //   res.redirect('/')
+  // })
 }
-  console.log('fetch done')
 
 function getUser() {
   return tokenService.getUserFromToken()
@@ -42,10 +51,10 @@ function logout() {
   tokenService.removeToken()
 }
 
-
-export default {
-  signup,
-  getUser,
-  logout,
-  login
-};
+const tokenFunctions = {
+signup,
+getUser,
+logout,
+login
+}
+export default tokenFunctions

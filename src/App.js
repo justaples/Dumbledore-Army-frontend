@@ -15,6 +15,7 @@ import SpellEdit from './components/pages/SpellEdit';
 import userService from './utils/userService';
 import SignUp from './components/pages/SignUp';
 import Login from './components/pages/Login';
+import Meetings from './components/Meetings';
   
 
 function App() {
@@ -35,8 +36,8 @@ useEffect(() => {
   .then( items => setMembers(items))
 }, [])
 
-console.log(spells)
-console.log(members)
+// console.log(spells)
+// console.log(members)
 
 const addSpell = (spell) =>{
   setSpells([...spells, spell])
@@ -63,7 +64,7 @@ const handleLogout = () => {
   userService.logout();
   setUser(null)
 }
-console.log(user)
+// console.log(user)
   return (
     <div className="App">
       <nav>
@@ -75,6 +76,7 @@ console.log(user)
         <Route path='/' element={<Home user={user} />} />
         <Route path='/spells' element= {<Spells spells = {spells} members= {members}/>} />
         <Route path='/members' element= {<Members spells = {spells} members= {members}/>} />
+        <Route path='/meetings' element= {<Meetings/>} />
         <Route path='/new-member' element= {<NewMember addMember={addMember} />} />
         <Route path='/new-spell' element= {<NewSpell addSpell={addSpell} />} />
         <Route path='/umbridge' element={<Umbridge />} />

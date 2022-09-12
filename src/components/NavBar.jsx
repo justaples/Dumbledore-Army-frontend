@@ -62,7 +62,6 @@ const NavContainer = styled.div`
 `
 
 const NavBar = ({ user, handleLogout }) => {
-console.log(user)
   if(user){
     return (
       <NavContainer>
