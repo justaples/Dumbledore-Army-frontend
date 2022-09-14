@@ -7,9 +7,9 @@ import Home from './components/pages/Home';
 import SpellView from './components/pages/SpellView';
 import MemberView from './components/pages/MemberView';
 import NavBar from './components/NavBar';
-import Umbridge from './components/pages/Umbridge';
 import NewMember from './components/pages/NewMember';
 import NewSpell from './components/pages/NewSpell';
+import NewMeeting from './components/pages/NewMeeting';
 import MemberEdit from './components/pages/MemberEdit';
 import SpellEdit from './components/pages/SpellEdit';
 import userService from './utils/userService';
@@ -22,6 +22,7 @@ function App() {
 
 const [spells, setSpells] = useState([])
 const [members, setMembers] = useState([])
+// const [meetings, setMeetings] = useState([])
 
 useEffect(() => {
   fetch('http://localhost:8000/spells')
@@ -47,6 +48,10 @@ const addMember = (member) =>{
   setMembers([...members, member])
 }
 
+// const addMeeting = (meeting) =>{
+//   setMeetings([...meetings, meeting])
+// }
+
 const updateMemberState = (id) => {
   setMembers(members.filter(member => member.id !== id))
 }
@@ -54,6 +59,8 @@ const updateMemberState = (id) => {
 const updateSpellState = (id) => {
   setSpells(spells.filter(spell => spell.id !== id))
 }
+
+// ---- Handling user signup - login - logout ----
 const [user, setUser] = useState({});
 
 const handleSignupOrLogin = () => {
@@ -74,12 +81,12 @@ const handleLogout = () => {
 
       <Routes>
         <Route path='/' element={<Home user={user} />} />
-        <Route path='/spells' element= {<Spells spells = {spells} members= {members}/>} />
-        <Route path='/members' element= {<Members spells = {spells} members= {members}/>} />
-        <Route path='/meetings' element= {<Meetings/>} />
-        <Route path='/new-member' element= {<NewMember addMember={addMember} />} />
-        <Route path='/new-spell' element= {<NewSpell addSpell={addSpell} />} />
-        <Route path='/umbridge' element={<Umbridge />} />
+        <Route path='/spells' element= {<Spells spells = {spells} members= {members} addSpell={addSpell}/>} />
+        <Route path='/members' element= {<Members spells = {spells} members= {members} addMember={addMember}/>} />
+        <Route path='/meetings' element= {<Meetings/>}/>
+        {/* <Route path='/new-member' element= {<NewMember addMember={addMember} />} /> */}
+        {/* <Route path='/new-spell' element= {<NewSpell addSpell={addSpell} />} /> */}
+        {/* <Route path='/umbridge' element={<Umbridge />} /> */}
         {/* <Route path='/spells/edit/:id' element={<SpellEdit setSpells={setSpells}/>} /> */}
         <Route path='/members/edit/:id' element={<MemberEdit setMembers={setMembers}/>} />
         <Route path='/spells/:id' element={<SpellView spells={spells} updateSpellState = {updateSpellState} members={members}/> }  />

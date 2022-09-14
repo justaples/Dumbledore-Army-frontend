@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const NewMember = ({addMember}) => {
+const NewMember = ({addMember, closeModal}) => {
 
     const initialState = {
         name: '',
@@ -28,6 +28,7 @@ const NewMember = ({addMember}) => {
             setFormData(initialState)
             addMember({...res.data})
             navigate('/members', {replace:true})
+            closeModal()
         })
     }
 

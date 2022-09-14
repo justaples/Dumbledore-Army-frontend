@@ -37,10 +37,7 @@ function signup(user) {
   //   tokenService.setToken(token)
   //   console.log('returning token', token)
   // });
-  // .then(res =>{
-  //   console.log('redirecting')
-  //   res.redirect('/')
-  // })
+
 }
 
 function getUser() {

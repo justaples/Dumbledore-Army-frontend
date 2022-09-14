@@ -7,13 +7,35 @@ import MemberEdit from './MemberEdit'
 
 
 const MemberInfo = styled.div`
-  /* border: 2px solid red; */
+  border: 2px solid black;
   margin: auto;
+  margin-top: 50px;
   width: 50%;
+  background-color: #ffffffda;
+  border-radius: 20px;
+  font-family: 'Kaushan Script', cursive; 
+  
+  
+  .picture{
+    width: 80%;
+    border: 7px double black;
+  }
+  
+  .buttons{
+    margin-bottom: 10px;
+  }
+  
+  .btn{
+    background-color: black;
+    color: white;
+    font-family: 'Kaushan Script', cursive; 
+    font-size: 20px;
+  }
 
-.picture{
-  width: 400px;
-}
+  p{
+    font-size: 25px;
+  }
+
 `
 
 const customStyles = {
@@ -30,69 +52,72 @@ const customStyles = {
 
 const MemberView = ({members, updateMemberState}) => {
 
-    let {id} = useParams()
-    let navigate = useNavigate()
+  let {id} = useParams()
+  let navigate = useNavigate()
+
+  const [member, setMember] = useState([])
+
+  useEffect(() => {
+      fetch(`http://localhost:8000/members/${id}`)
+        .then(res => res.json())
+        .then( items => setMember(items))
+      }, [])
+
+  console.log(member)
+
+  const deleteMember = (id) => {
+      axios.delete(`http://localhost:8000/members/${id}`)
+      .then(res => {
+          console.log(res)
+          updateMemberState(id)
+          navigate('/members/')
+      })
+    }
+
+    // *--- Handling delete modal ----*
+  let subtitleDel;
+  const [delModalIsOpen, setDelIsOpen] = useState(false);
   
-    const [member, setMember] = useState([])
-
-    useEffect(() => {
-        fetch(`http://localhost:8000/members/${id}`)
-          .then(res => res.json())
-          .then( items => setMember(items))
-        }, [])
-
-console.log(member)
-
-    const deleteMember = (id) => {
-        axios.delete(`http://localhost:8000/members/${id}`)
-        .then(res => {
-            console.log(res)
-            updateMemberState(id)
-            navigate('/members/')
-        })
-    }
-    let subtitleDel;
-    const [delModalIsOpen, setDelIsOpen] = React.useState(false);
-
-    function openDelModal() {
-      setDelIsOpen(true);
-    }
+  function openDelModal() {
+    setDelIsOpen(true);
+  }
   
-    function afterOpenDelModal() {
-      // references are now sync'd and can be accessed.
-      subtitleDel.style.color = 'black';
-    }
+  function afterOpenDelModal() {
+    subtitleDel.style.color = 'black';
+  }
   
-    function closeDelModal() {
-      setDelIsOpen(false);
-    }
+  function closeDelModal() {
+    setDelIsOpen(false);
+  }
+  
+  // *--- Handling edit modal ----*
+  let subtitleEdit;
+  const [editModalIsOpen, setIsEditOpen] = useState(false);
 
-    let subtitleEdit;
-    const [editModalIsOpen, setIsEditOpen] = React.useState(false);
+  function openEditModal() {
+    setIsEditOpen(true);
+  }
 
-    function openEditModal() {
-      setIsEditOpen(true);
-    }
-  
-    function afterOpenEditModal() {
-      // references are now sync'd and can be accessed.
-      subtitleEdit.style.color = 'black';
-    }
-  
-    function closeEditModal() {
-      setIsEditOpen(false);
-    }
+  function afterOpenEditModal() {
+    subtitleEdit.style.color = 'black';
+  }
+
+  function closeEditModal() {
+    setIsEditOpen(false);
+  }
+
   return (
     <MemberInfo>
         <h1>{member.name} - {member.house}</h1>
         <p>Age: {member.age}</p>
         {/* <p>{member.house}</p> */}
-        <img src={member.picture} alt="" className='picture'/>
+        <img src={member.picture} alt={member.name} className='picture'/>
         <br />
         {/* <Link to ={`/members/edit/${member.id}`}>Edit member information</Link> */}
         
+        <div className="buttons">
         {/* ----- Button below opens the modal to edit Member ----- */}
-        <button onClick={openEditModal}>Edit Member</button>
+        <button className='btn' onClick={openEditModal}>Edit Member</button>
 
         {/* ----- Modal to edit Member below ----- */}
         <Modal
@@ -109,13 +134,8 @@ console.log(member)
         </Modal>
         {/* ----- Modal to edit Member above ----- */}
 
-
-
-
-
-
         {/* ----- Button below opens the modal to delete member ----- */}
-        <button id='deleteButt' onClick={openDelModal}>Remove Member</button>
+        <button className='btn' onClick={openDelModal}>Remove Member</button>
         
         {/* ----- Modal to delete member below ----- */}
         <Modal
@@ -131,6 +151,7 @@ console.log(member)
         <button onClick={() => deleteMember(member.id)}>Delete</button>
         </Modal>
         {/* ----- Modal to delete member above ----- */}
+        </div>
 
     </MemberInfo>
   )

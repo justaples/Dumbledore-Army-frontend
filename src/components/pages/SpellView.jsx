@@ -18,9 +18,11 @@ const Spell = styled.div`
     width: 50%;
     margin: auto;
     margin-top: 50px;
+    font-family: 'Kaushan Script', cursive; 
+
   }
   
-  .table{
+  /* .table{
     margin: auto;
   }
 
@@ -28,14 +30,32 @@ const Spell = styled.div`
     font-size: 20px;
   }
   .checked:hover{
-    /* color: #06d175; */
     text-shadow: 2px 2px #b7b22c; 
     font-weight: bold;
-    /* font-size: 15px; */
   }
 
   .col-1{
     width: 300px;
+  } */
+
+  .buttons{
+    margin-bottom: 10px;
+  }
+  
+  .btn{
+    background-color: black;
+    color: white;
+    font-family: 'Kaushan Script', cursive; 
+    font-size: 20px;
+  }
+
+  h1{
+    font-size: 45px;
+    text-decoration: underline;
+  }
+
+  p{
+    font-size: 25px;
   }
 
   `
@@ -84,50 +104,51 @@ const SpellView = ({spells, updateSpellState}) => {
           navigate('/spells')
       })
   }
-    let subtitleDel;
-    const [delModalIsOpen, setDelIsOpen] = React.useState(false);
 
-    function openDelModal() {
-      setDelIsOpen(true);
-    }
-  
-    function afterOpenDelModal() {
-      // references are now sync'd and can be accessed.
-      subtitleDel.style.color = 'black';
-    }
-  
-    function closeDelModal() {
-      setDelIsOpen(false);
-    }
+    // *--- Handling delete modal ----*
+  let subtitleDel;
+  const [delModalIsOpen, setDelIsOpen] = React.useState(false);
 
-    let subtitleEdit;
-    const [editModalIsOpen, setIsEditOpen] = React.useState(false);
+  function openDelModal() {
+    setDelIsOpen(true);
+  }
 
-    function openEditModal() {
-      setIsEditOpen(true);
-    }
-  
-    function afterOpenEditModal() {
-      // references are now sync'd and can be accessed.
-      subtitleEdit.style.color = 'black';
-    }
-  
-    function closeEditModal() {
-      setIsEditOpen(false);
-    }
+  function afterOpenDelModal() {
+    subtitleDel.style.color = 'black';
+  }
+
+  function closeDelModal() {
+    setDelIsOpen(false);
+  }
+
+  // *--- Handling edit modal ----*
+  let subtitleEdit;
+  const [editModalIsOpen, setIsEditOpen] = React.useState(false);
+
+  function openEditModal() {
+    setIsEditOpen(true);
+  }
+
+  function afterOpenEditModal() {
+    subtitleEdit.style.color = 'black';
+  }
+
+  function closeEditModal() {
+    setIsEditOpen(false);
+  }
 
   return (
     <Spell>
       <div className="spell-container">
 
         <h1>{spell.spell}</h1>
-        <p>Type: {spell.type}</p>
-        <p>Use: {spell.use}</p>
-        <p>Effect: {spell.effect}</p>
+        <p> <b>Type: </b> {spell.type}</p>
+        <p> <b>Use: </b> {spell.use}</p>
+        <p> <b>Effect: </b> {spell.effect}</p>
         {/* <Link to ={`/spells/edit/${spell.id}`}>Edit spell information</Link> */}
-
+        <div className="button">
         {/* ----- Button below opens the modal to edit spell ----- */}
-        <button onClick={openEditModal}>Edit Spell</button>
+        <button className='btn' onClick={openEditModal}>Edit Spell</button>
 
         {/* ----- Modal to edit spell below ----- */}
         <Modal
@@ -146,7 +167,7 @@ const SpellView = ({spells, updateSpellState}) => {
         
 
         {/* ----- Button below opens the modal to delete spell ----- */}
-        <button onClick={openDelModal}>Delete Spell</button>
+        <button className='btn' onClick={openDelModal}>Delete Spell</button>
 
         {/* ----- Modal to delete spell below ----- */}
         <Modal
@@ -162,43 +183,44 @@ const SpellView = ({spells, updateSpellState}) => {
         <button onClick={() => deleteSpell(spell.id)}>Delete</button>
         </Modal>
         {/* ----- Modal to delete spell above ----- */}
+        </div>
         
 
+{/* *---- Code below left for future use ----* */}
 {/* 
-
-          <table className='table'>
-            <thead>
-              <tr>
-                <th className='col-1'>Name</th>
-                <th className='col-2'>Learned</th>
+<table className='table'>
+  <thead>
+    <tr>
+      <th className='col-1'>Name</th>
+      <th className='col-2'>Learned</th>
+    </tr>
+  </thead>
+  {spell.members && spell.members.map(member=>{
+    return (<tbody>
+              <tr className='checked'>
+                <td>{member.name}</td>
+                <td> &#10003;</td>
               </tr>
-            </thead>
-            {spell.members && spell.members.map(member=>{
-              return (<tbody>
-                        <tr className='checked'>
-                          <td>{member.name}</td>
-                          <td> &#10003;</td>
-                        </tr>
-                      </tbody>)
-                    })}
-          </table> */}
+            </tbody>)
+          })}
+</table> */}
 
 
-<table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Learned</th>
-              </tr>
-            </thead>
-            <tbody>
-              { members.map((member, index) => {
-                return (
-                    <MembersInSpells member={member} i={index} />
-                )
-              })}
-            </tbody>
-          </table>
+  {/* <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Learned</th>
+      </tr>
+    </thead>
+    <tbody>
+      { members.map((member, index) => {
+        return (
+            <MembersInSpells member={member} i={index} />
+        )
+      })}
+    </tbody>
+  </table> */}
 
 
 

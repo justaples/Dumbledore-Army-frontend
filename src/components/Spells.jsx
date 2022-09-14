@@ -1,6 +1,8 @@
 import React from 'react'
 import Spell from './Spell'
 import styled from 'styled-components'
+import Modal from 'react-modal/lib/components/Modal'
+import NewSpell from './pages/NewSpell'
 
 const List = styled.div`
   .spell-list{
@@ -35,13 +37,63 @@ const List = styled.div`
     text-decoration: 2px underline ;
   }
 
-`
+  .top{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 
-const Spells = ({spells, members}) => {
+  /* align-items: flex-end; */
+  .btn{
+    color: black;
+    background-color: transparent;
+    border-radius: 40%;
+    height: 35px;
+    margin-top: 25px;
+    margin-right: 25px;
+    float: right;
+    font-size: 25px;
+    /* font-family: 'Kaushan Script', cursive;  */
+    
+  }
+  
+
+`
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+const Spells = ({spells, members, addSpell}) => {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <List>
         <div className="spell-list">
-        <h1 className="title">Spells</h1>
+        <button className='btn' onClick={openModal}>Add</button>
+        <div className='top' >
+        <h1 className='title'>Spells</h1>
+        </div>
         {spells.length === 0 ? 'No spells added' : (spells.map(spell =>{
           return <Spell key = {spell.id} spell={spell} />
         }))
@@ -52,6 +104,19 @@ const Spells = ({spells, members}) => {
         }))
       } */}
       </div>
+
+
+      <Modal
+      ariaHideApp={false}
+      isOpen={modalIsOpen}
+      onAfterOpen={afterOpenModal}
+      onRequestClose={closeModal}
+      style={customStyles}
+      >
+      <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add New Spell</h2>
+      <NewSpell closeModal={closeModal} addSpell={addSpell}/>
+      <button onClick={closeModal}>Close</button>
+      </Modal>
     </List>
   )
 }

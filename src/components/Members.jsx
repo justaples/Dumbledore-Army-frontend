@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import Member from './Member'
 import styled from 'styled-components'
+import Modal from 'react-modal/lib/components/Modal'
+import NewMember from '../components/pages/NewMember'
 
 const Names = styled.div`
   .name-list{
@@ -35,28 +37,83 @@ const Names = styled.div`
     text-decoration: 2px underline ;
   }
 
+  .top{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .btn{
+    color: black;
+    background-color: transparent;
+    border-radius: 40%;
+    height: 35px;
+    margin-top: 25px;
+    margin-right: 25px;
+    float: right;
+    font-size: 25px;
+    /* font-family: 'Kaushan Script', cursive;  */
+    
+  }
+  
+
 `
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+const Members = ({members,spells, addMember}) => {
 
-const Members = ({spells}) => {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const [members, setMembers] = useState([])
+  function openModal() {
+    setIsOpen(true);
+  }
 
-  useEffect(() => {
-    fetch('http://localhost:8000/members')
-    .then(res => res.json())
-    .then( items => setMembers(items))
-  }, [])
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <Names >
       <div className="name-list">
+        {/* <button className='btn' onClick={openModal}>Add</button> */}
+        <button className='btn' onClick={openModal}>Add</button>
+        <div className='top' >
         <h1 className='title'>Members</h1>
+        </div>
         {members.length === 0 ? 'No members added' : (members.map(member =>{
             return <Member key = {member.id} member={member}  />
         }))
+        }
+      </div>
 
-            }
-            </div>
+      <Modal
+      ariaHideApp={false}
+      isOpen={modalIsOpen}
+      onAfterOpen={afterOpenModal}
+      onRequestClose={closeModal}
+      style={customStyles}
+      >
+      <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add New Member</h2>
+      <NewMember closeModal={closeModal} addMember={addMember}/>
+      <button onClick={closeModal}>Close</button>
+      </Modal>
+
     </Names>
   )
 }

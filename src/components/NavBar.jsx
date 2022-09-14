@@ -5,8 +5,9 @@ import styled from 'styled-components'
 const NavContainer = styled.div`
     .navBar {
     font-family: 'Tangerine', cursive;
-    font-size: 35px;
-    text-shadow: 1px 1px black;
+  font-family: 'Kaushan Script', cursive; 
+
+    font-size: 30px;
     height: 100px;
     position: fixed;
     display: flex;
@@ -19,7 +20,16 @@ const NavContainer = styled.div`
     height: 50px;
     text-decoration: none;
     color: black;
-
+    text-shadow: 1px 1px black;
+    
+  }
+  
+  .transparent{
+    margin: 20px;
+    height: 50px;
+    text-decoration: none;
+    /* color: black; */
+    color: rgba(20, 1, 1, 0.5);
   }
 
   @-webkit-keyframes hvr-buzz {
@@ -69,11 +79,12 @@ const NavBar = ({ user, handleLogout }) => {
   
               <Link className='links hvr-buzz' to={'/members'}>Members</Link>
               <Link className='links hvr-buzz' to={'/spells'}>Spells</Link>
-              <Link className='links hvr-buzz' to={'/new-member'}>New Member</Link>
-              <Link className='links hvr-buzz' to={'/new-spell'}>New Spell</Link>
+              <Link className='links hvr-buzz' to={'/meetings'}>Meetings</Link>
+              {/* <Link className='links hvr-buzz' to={'/new-member'}>New Member</Link> */}
+              {/* <Link className='links hvr-buzz' to={'/new-spell'}>New Spell</Link> */}
               <a href="https://justaples.github.io/Harry-Potter-Trivia/" className='links hvr-buzz' target='_blank' rel='noreferrer'>Play Trivia</a>
               {/* <p>Hello {user.username}</p> */}
-              <Link className='links hvr-buzz' to={'/home'} onClick={handleLogout}>Umbridge is coming <br />Log out!!</Link>
+              <Link className='links hvr-buzz' to={'/home'} onClick={handleLogout}>Umbridge <br /> is coming <br />LOG OUT!!</Link>
         </div>
       </NavContainer>
     )
@@ -81,9 +92,8 @@ const NavBar = ({ user, handleLogout }) => {
     return (
       <NavContainer>
         <div className="navBar">
-              <Link className='links hvr-buzz' to={'/login'}>Login</Link>
-              <Link className='links hvr-buzz' to={'/signup'}>Sign Up</Link>
-              {/* <Link to={'/umbridge'}>Umbridge is coming!</Link> */}
+              <Link className='transparent hvr-buzz' to={'/login'}>Login</Link>
+              <Link className='transparent hvr-buzz' to={'/signup'}>Sign Up</Link>
         </div>
       </NavContainer>
     )

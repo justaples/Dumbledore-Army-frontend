@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const NewSpell = ({addSpell}) => {
+const NewSpell = ({addSpell, closeModal}) => {
   const initialState = {
     spell: '',
     type: '',
@@ -32,6 +32,7 @@ const handleSubmit = (e) => {
         setFormData(initialState)
         addSpell({...res.data})
         navigate('/spells', {replace:true})
+        closeModal()
     })
 }
 
