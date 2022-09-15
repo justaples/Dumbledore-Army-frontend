@@ -4,24 +4,24 @@ import userToken from '../../utils/userService'
 
 const Login = ({handleSignupOrLogin}) => {
 
-    const navigate = useNavigate()
-    const [formData, setFormData] = useState()
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState()
 
-    const handleChange = (e) => {
-        setFormData({...formData, [e.target.id] : e.target.value})
-    }
+  const handleChange = (e) => {
+      setFormData({...formData, [e.target.id] : e.target.value})
+  }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        try{
-            await userToken.login(formData);
-            handleSignupOrLogin()
-            navigate('/')
-            window.location.reload()
-        } 
-        catch (err){
-            alert('Invalid Credentials')
-        }
+  const handleSubmit = async(e) => {
+      e.preventDefault();
+      try{
+          await userToken.login(formData);
+          handleSignupOrLogin()
+          navigate('/')
+          window.location.reload()
+      } 
+      catch (err){
+          alert('Invalid Credentials')
+      }
     }
     
   return (

@@ -10,8 +10,8 @@ const Names = styled.div`
     text-shadow:1px 1px #272121;
     margin: 0px;
   }
-/* hover effect: https://github.com/IanLunn/Hover/blob/master/css/hover.css */
 
+/* hover effect: https://github.com/IanLunn/Hover/blob/master/css/hover.css */
   @-webkit-keyframes hvr-pulse {
   25% {
     -webkit-transform: scale(1.1);
@@ -62,7 +62,6 @@ const Member = ({spell, member}) => {
         <Link className='names' to={`/members/${member.id}`}>
             <h1 className='hvr-pulse name'>{member.name}</h1>
         </Link>
-          {/* <p>{member.age}</p> */}
     </Names>
   )
 }

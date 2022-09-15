@@ -14,30 +14,13 @@ const Spell = styled.div`
     border-radius: 50px;
     box-shadow: inset 0 0 150px #543400;
     padding: 10px;
-    /* border: 2px solid red; */
     width: 50%;
     margin: auto;
     margin-top: 50px;
+    margin-left: 29vw;
     font-family: 'Kaushan Script', cursive; 
-
   }
   
-  /* .table{
-    margin: auto;
-  }
-
-  .checked{
-    font-size: 20px;
-  }
-  .checked:hover{
-    text-shadow: 2px 2px #b7b22c; 
-    font-weight: bold;
-  }
-
-  .col-1{
-    width: 300px;
-  } */
-
   .buttons{
     margin-bottom: 10px;
   }
@@ -60,52 +43,50 @@ const Spell = styled.div`
 
   `
 
-  const customStyles = {
+const customStyles = {
   content: {
+    textAlign: 'center',
     border: '2px solid black',
-    top: '20%',
+    top: '30%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    // marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
   },
 };
 
 const SpellView = ({spells, updateSpellState}) => {
 
-    let {id} = useParams()
-    let navigate = useNavigate()
+  let {id} = useParams()
+  let navigate = useNavigate()
 
-    const [spell, setSpell] = useState([])
-    const [members, setMembers] = useState([])
-    
-    useEffect(() => {
-      fetch(`http://localhost:8000/spells/${id}`)
-      .then(res => res.json())
-      .then( items => setSpell(items))
-    }, [])
-    
-
-    useEffect(() => {
-    fetch('http://localhost:8000/members')
+  const [spell, setSpell] = useState([])
+  const [members, setMembers] = useState([])
+  
+  useEffect(() => {
+    fetch(`http://localhost:8000/spells/${id}`)
     .then(res => res.json())
-    .then( items => setMembers(items))
-    }, [])
+    .then( items => setSpell(items))
+  }, [])
+  
 
-    // console.log(members)
-    // console.log(spell)
+  useEffect(() => {
+  fetch('http://localhost:8000/members')
+  .then(res => res.json())
+  .then( items => setMembers(items))
+  }, [])
 
-    const deleteSpell = (id) => {
-      axios.delete(`http://localhost:8000/spells/${id}`)
-      .then(res => {
-          console.log(res)
-          updateSpellState(id)
-          navigate('/spells')
-      })
+
+  const deleteSpell = (id) => {
+    axios.delete(`http://localhost:8000/spells/${id}`)
+    .then(res => {
+      console.log(res)
+      updateSpellState(id)
+      navigate('/spells')
+    })
   }
 
-    // *--- Handling delete modal ----*
+  // *--- Handling delete modal ----*
   let subtitleDel;
   const [delModalIsOpen, setDelIsOpen] = React.useState(false);
 
@@ -145,8 +126,8 @@ const SpellView = ({spells, updateSpellState}) => {
         <p> <b>Type: </b> {spell.type}</p>
         <p> <b>Use: </b> {spell.use}</p>
         <p> <b>Effect: </b> {spell.effect}</p>
-        {/* <Link to ={`/spells/edit/${spell.id}`}>Edit spell information</Link> */}
         <div className="button">
+
         {/* ----- Button below opens the modal to edit spell ----- */}
         <button className='btn' onClick={openEditModal}>Edit Spell</button>
 
@@ -157,8 +138,7 @@ const SpellView = ({spells, updateSpellState}) => {
         onAfterOpen={afterOpenEditModal}
         onRequestClose={closeEditModal}
         style={customStyles}
-        contentLabel="Edit Modal"
-        >
+        contentLabel="Edit Modal">
         <h2 ref={(_subtitleEdit) => (subtitleEdit = _subtitleEdit)}>Edit Spell Information</h2>
         <SpellEdit closeEditModal={closeEditModal} />
         <button onClick={closeEditModal}>X</button>
@@ -176,14 +156,14 @@ const SpellView = ({spells, updateSpellState}) => {
         onAfterOpen={afterOpenDelModal}
         onRequestClose={closeDelModal}
         style={customStyles}
-        contentLabel="Delete Modal"
-        >
+        contentLabel="Delete Modal">
         <h2 ref={(_subtitleDel) => (subtitleDel = _subtitleDel)}>Are you sure you want to delete this spell?</h2>
         <button onClick={closeDelModal}>X</button>
         <button onClick={() => deleteSpell(spell.id)}>Delete</button>
         </Modal>
         {/* ----- Modal to delete spell above ----- */}
         </div>
+      </div>
         
 
 {/* *---- Code below left for future use ----* */}
@@ -197,37 +177,36 @@ const SpellView = ({spells, updateSpellState}) => {
   </thead>
   {spell.members && spell.members.map(member=>{
     return (<tbody>
-              <tr className='checked'>
-                <td>{member.name}</td>
-                <td> &#10003;</td>
-              </tr>
-            </tbody>)
-          })}
-</table> */}
+      <tr className='checked'>
+      <td>{member.name}</td>
+      <td> &#10003;</td>
+      </tr>
+      </tbody>)
+    })}
+  </table> */}
 
 
   {/* <table>
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>Learned</th>
-      </tr>
+    <tr>
+    <th>Name</th>
+    <th>Learned</th>
+    </tr>
     </thead>
     <tbody>
-      { members.map((member, index) => {
-        return (
-            <MembersInSpells member={member} i={index} />
+    { members.map((member, index) => {
+      return (
+        <MembersInSpells member={member} i={index} />
         )
       })}
-    </tbody>
-  </table> */}
+      </tbody>
+    </table> */}
 
-
-
-      </div>
-
-
+    
+    
     </Spell>
+
+
   )
 }
 

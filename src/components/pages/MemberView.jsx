@@ -10,6 +10,7 @@ const MemberInfo = styled.div`
   border: 2px solid black;
   margin: auto;
   margin-top: 50px;
+  margin-left: 31vw;
   width: 50%;
   background-color: #ffffffda;
   border-radius: 20px;
@@ -40,12 +41,14 @@ const MemberInfo = styled.div`
 
 const customStyles = {
   content: {
+    display: 'flex',
+    flexDirection: 'column',
     border: '2px solid black',
-    top: '20%',
+    top: '30%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    // marginRight: '-50%',
+    // margin: 'auto',
     transform: 'translate(-50%, -50%)',
   },
 };
@@ -58,10 +61,10 @@ const MemberView = ({members, updateMemberState}) => {
   const [member, setMember] = useState([])
 
   useEffect(() => {
-      fetch(`http://localhost:8000/members/${id}`)
-        .then(res => res.json())
-        .then( items => setMember(items))
-      }, [])
+    fetch(`http://localhost:8000/members/${id}`)
+      .then(res => res.json())
+      .then( items => setMember(items))
+    }, [])
 
   console.log(member)
 
@@ -110,10 +113,8 @@ const MemberView = ({members, updateMemberState}) => {
     <MemberInfo>
         <h1>{member.name} - {member.house}</h1>
         <p>Age: {member.age}</p>
-        {/* <p>{member.house}</p> */}
         <img src={member.picture} alt={member.name} className='picture'/>
         <br />
-        {/* <Link to ={`/members/edit/${member.id}`}>Edit member information</Link> */}
         
         <div className="buttons">
         {/* ----- Button below opens the modal to edit Member ----- */}

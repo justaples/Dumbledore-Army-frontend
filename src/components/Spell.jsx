@@ -10,8 +10,8 @@ const List = styled.div`
     text-shadow:1px 1px #272121;
     margin: 0px;
   }
-/* hover effect: https://github.com/IanLunn/Hover/blob/master/css/hover.css */
-
+  
+  /* hover effect: https://github.com/IanLunn/Hover/blob/master/css/hover.css */
   @-webkit-keyframes hvr-pulse {
   25% {
     -webkit-transform: scale(1.1);
@@ -56,31 +56,11 @@ const List = styled.div`
 `
 
 const Spell = ({spell, member}) => {
-
-// const [member, setMember] = useState([])
-
-//     useEffect(() => {
-//         fetch('http://localhost:8000/members')
-//         .then(res => res.json())
-//         .then( items => setMember(items))
-//       }, [])
-
-//       console.log(member)
-
-// console.log(member)
   return (
     <List>
-        <Link className='spells' to={`/spells/${spell.id}`}>
-        <h1 className='hvr-pulse spell'>{spell.spell}</h1>
-        {/* <h1>{members.name}</h1> */}
-        {/* <h1>{member.name}</h1> */}
-        </Link>
-        {/* <p>{spell.type}</p>
-        <p>{spell.use}</p>
-        <p>{spell.effect}</p>
-        <p>{spell.members}</p> */}
-        {/* <p>{members.name}</p> */}
-
+      <Link className='spells' to={`/spells/${spell.id}`}>
+      <h1 className='hvr-pulse spell'>{spell.spell}</h1>
+      </Link>
     </List>
   )
 }

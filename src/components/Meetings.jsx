@@ -1,30 +1,58 @@
 import React, {useState, useEffect} from 'react'
 import NewMeeting from './pages/NewMeeting'
-// import Meeting from './Meeting'
 import moment from 'moment'
 import styled from 'styled-components'
 
 const MeetingStyle = styled.div`
 
+font-family: 'Kaushan Script', cursive;
+.meeting{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.circle{
+  margin: auto;
+  background: radial-gradient(#f3de65, #d0b100);
+  border: 5px solid #DAA520;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Combo', cursive;
+}
 
-  .circle{
-    margin: auto;
-    background-color: #ffc800;
-    border: 5px solid orange;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    text-align: center;
-    display: flex;
-  }
+.date, .galleon, .subj{
+  margin: 10px;
+}
 
-  .meeting{
-    /* border: 2px solid red; */
-  }
-  .date{
-    margin: auto;
-    /* border: 2px solid red; */
-  }
+h3{
+  color: #DAA520;
+  text-shadow: 1px 1px #D2691E;
+  font-size: 35px;
+}
+.date, .subj{
+  font-weight: bold;
+  color: #D2691E;
+  opacity: 0.18;
+  transition: 1s;
+  font-size: 25px;
+}
+
+.subj{
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.date:hover, .subj:hover{
+  text-shadow: 1px 1px #ce5f0f; 
+  opacity: 1;
+}
 `
 
 const Meetings = () => {
@@ -35,72 +63,35 @@ useEffect(() => {
     .then(res => res.json())
     .then( items => setMeetings(items))
   }, [])
-  console.log(meetings)
 
   const sortMeetings = [...meetings]
   sortMeetings.sort((a,b) => (a.date < b.date) ? 1 : -1)
 
-  console.log(sortMeetings)
-
   const todayFormat = moment(new Date(), 'YYYY-MM-DD').format();
   const today = todayFormat.split('T')[0]
-  // console.log(today)
 
   return (
     <MeetingStyle>
-        <div>
-        <h1 className='title'>Meetings</h1>
-        <NewMeeting />
-        {sortMeetings.length === 0 ? 'No meetings added' : (sortMeetings.map(meeting => {
-          return meeting.date >= today ?
-          (
-            <div className="meeting">
-            <div className="circle">
-              <p className='date' >{meeting.date}</p>
-            </div>
-              <div className="bottom">{meeting.subject}</div>
-            </div>
-          )
+      <div>
+      <h1 className='title'>Meetings</h1>
+      <NewMeeting />
+      {sortMeetings.length === 0 ? 'No meetings added' : (sortMeetings.map(meeting => {
+        return meeting.date >= today ?
+        (<div className="meeting">
+          <div className="circle">
+            <p className='date' >{meeting.date}</p>
+            <h3 className='galleon'>Unum Galleon</h3>
+            <p className="date subj">{meeting.subject}</p>
+          </div>
+        </div>)
 
-
-
-          // (
-          //   <div className='coin'>
-          //     <div className='front jump'>
-          //       <div className='star'></div>
-          //       <span className='currency'>D.A.</span>
-          //       <div className='shapes'>
-          //         <div className='shape_l'></div>
-          //         <div className='shape_r'></div>
-          //         <span className='top'>{meeting.date}</span>
-          //         <span className='bottom'>{meeting.date}</span>
-          //       </div>
-          //     </div>
-          //     <div className='shadow'></div>
-          //   </div>
-          //   )
-
-
-
-
-          // (<h1>
-          // {/* today or later */}
-          // Upcoming Meetings: {meeting.date} - {meeting.subject}</h1> )
+        :
+        
+        (<p>
+          <b>Past: </b>{meeting.date} - {meeting.subject}</p>)
           
-          :
-
-          (<p>
-            {/* past  */}
-            <b>Past: </b>{meeting.date} - {meeting.subject}</p>)
-        }
-        
-
-
-          ))}
-        
-        
-            </div>
-
+        }))}
+      </div>
     </MeetingStyle>
   )
 }

@@ -1,42 +1,42 @@
-import React, {useEffect, useState} from 'react'
-import SpellView from './pages/SpellView'
+// import React, {useEffect, useState} from 'react'
+// import SpellView from './pages/SpellView'
 
-const MembersInSpells = ({member, index}) => {
+// const MembersInSpells = ({member, index}) => {
 
-    const [check, setCheck] = useState(false)
+//     const [check, setCheck] = useState(false)
 
-    useEffect(() => {
-      const localStorageToggled = localStorage.getItem("check");
+//     useEffect(() => {
+//       const localStorageToggled = localStorage.getItem("check");
 
-      if (localStorageToggled) {
-        setCheck(localStorageToggled === "true" ? true : false);
-      } else {
-        localStorage.setItem("check", `${check}`);
-      }
-    }, []);
+//       if (localStorageToggled) {
+//         setCheck(localStorageToggled === "true" ? true : false);
+//       } else {
+//         localStorage.setItem("check", `${check}`);
+//       }
+//     }, []);
 
 
-    const handleCheckMark = () =>{
-      localStorage.setItem('check', `${check}`)
-      setCheck(!check)
-    }
+//     const handleCheckMark = () =>{
+//       localStorage.setItem('check', `${check}`)
+//       setCheck(!check)
+//     }
 
-    const [members, setMembers] = useState([])
+//     const [members, setMembers] = useState([])
 
-    useEffect(() => {
-    fetch('http://localhost:8000/members')
-    .then(res => res.json())
-    .then( items => setMembers(items))
-    }, [])
+//     useEffect(() => {
+//     fetch('http://localhost:8000/members')
+//     .then(res => res.json())
+//     .then( items => setMembers(items))
+//     }, [])
 
-  return (
-    <div>
-        <tr onClick={handleCheckMark}>
-        <td>{member.name}</td>
-        {check ? <td>&#10003;</td> : <td></td>}
-        </tr>
-    </div>
-  )
-}
+//   return (
+//     <div>
+//         <tr onClick={handleCheckMark}>
+//         <td>{member.name}</td>
+//         {check ? <td>&#10003;</td> : <td></td>}
+//         </tr>
+//     </div>
+//   )
+// }
 
-export default MembersInSpells
+// export default MembersInSpells
