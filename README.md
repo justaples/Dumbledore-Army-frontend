@@ -5,14 +5,6 @@
 Based on the book **Harry Potter and the Order of the Phoenix** by J. K. Rowling, this is a magic project meant to track spells learned by all the D.A. members. User is able to **add new members** to the army, **new spells** to the spell book and add **meetings to schedule**.\
 When user is logged in, they can see all the functionality in the app. Once the user logs out they can no longer see any spells or member or meetings, only the landing page asking to login or sign up with an "invisible" effect.
 
-## Screenshots of the app
-
-<img width="1415" alt="Screen Shot 2022-09-15 at 4 17 31 PM" src="https://user-images.githubusercontent.com/101436947/190500812-cbbd0875-d19d-427a-a99f-618e6b47b013.png">
-<img width="1415" alt="Screen Shot 2022-09-15 at 4 16 25 PM" src="https://user-images.githubusercontent.com/101436947/190500827-640dce41-754d-4b26-a7ef-eb401e6239f6.png">
-<img width="1415" alt="Screen Shot 2022-09-15 at 4 17 17 PM" src="https://user-images.githubusercontent.com/101436947/190500849-8e71756c-1fe3-4284-9f24-681e9503214a.png">
-<img width="1415" alt="Screen Shot 2022-09-15 at 4 17 02 PM" src="https://user-images.githubusercontent.com/101436947/190500862-6fb94f28-ecb5-405b-a758-e4038214703d.png">
-<img width="1415" alt="Screen Shot 2022-09-15 at 4 16 48 PM" src="https://user-images.githubusercontent.com/101436947/190500869-0934f0c4-5115-4003-8e2a-ee6ec91c02fa.png">
-
 ## User stories
 
 - As a user I want to be able to sign up with user name, email and password
@@ -27,6 +19,14 @@ When user is logged in, they can see all the functionality in the app. Once the 
 - As a user I want to see the past meetings 
 - As a user I want to see current and future meetings displayed on a Galleon
 - As a user I want the Galleon to hide the date and subject of the meeting, only displaying the information when hovering over it
+
+## Screenshots of the app
+
+<img width="1415" alt="Screen Shot 2022-09-15 at 4 17 31 PM" src="https://user-images.githubusercontent.com/101436947/190500812-cbbd0875-d19d-427a-a99f-618e6b47b013.png">
+<img width="1415" alt="Screen Shot 2022-09-15 at 4 16 25 PM" src="https://user-images.githubusercontent.com/101436947/190500827-640dce41-754d-4b26-a7ef-eb401e6239f6.png">
+<img width="1415" alt="Screen Shot 2022-09-15 at 4 17 17 PM" src="https://user-images.githubusercontent.com/101436947/190500849-8e71756c-1fe3-4284-9f24-681e9503214a.png">
+<img width="1415" alt="Screen Shot 2022-09-15 at 4 17 02 PM" src="https://user-images.githubusercontent.com/101436947/190500862-6fb94f28-ecb5-405b-a758-e4038214703d.png">
+<img width="1415" alt="Screen Shot 2022-09-15 at 4 16 48 PM" src="https://user-images.githubusercontent.com/101436947/190500869-0934f0c4-5115-4003-8e2a-ee6ec91c02fa.png">
 
 ## Technologies and Concepts
 
