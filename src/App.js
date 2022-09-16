@@ -32,6 +32,9 @@ function App() {
     .then(res => res.json())
     .then( items => setMembers(items))
   }, [])
+console.log(members)
+console.log(spells)
+
 
   const addSpell = (spell) =>{
     setSpells([...spells, spell])
