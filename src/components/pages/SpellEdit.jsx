@@ -45,8 +45,8 @@ const SpellEdit = ({setSpells}) => {
     axios.put(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`, formData)
     .then(res => {
       setFormData(initialState)
-      // window.location.reload()
-      navigate(`/spells/${id}`, {replace: true})
+      window.location.reload()
+      // navigate(`/spells/${id}`, {replace: true})
     })
   }
 

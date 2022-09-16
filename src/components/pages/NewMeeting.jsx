@@ -41,7 +41,7 @@ const NewMeeting = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
-    axios.post(`${process.env.REACT_APP_DA_API_URL}/meetings`, formData)
+    axios.post(`${process.env.REACT_APP_DA_API_URL}/meetings/`, formData)
     .then(res => {
         setFormData(initialState)
         addMeeting({...res.data})
