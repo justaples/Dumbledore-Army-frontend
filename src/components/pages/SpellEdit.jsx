@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams} from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -21,7 +21,7 @@ const Form = styled.div`
 
 const SpellEdit = ({setSpells}) => {
   let {id} = useParams()
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
 
   const initialState = {
     spell: '',
@@ -45,8 +45,8 @@ const SpellEdit = ({setSpells}) => {
     axios.put(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`, formData)
     .then(res => {
       setFormData(initialState)
-      window.location.reload()
-      // navigate(`/spells/${id}`, {replace: true})
+      // window.location.reload()
+      navigate(`/spells/${id}`, {replace: true})
     })
   }
 
