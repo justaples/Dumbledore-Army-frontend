@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const NavContainer = styled.div`
   .navBar {
     font-family: 'Kaushan Script', cursive; 
-    width: 150px;
+    width: 200px;
     font-size: 30px;
     height: 100px;
     position: fixed;

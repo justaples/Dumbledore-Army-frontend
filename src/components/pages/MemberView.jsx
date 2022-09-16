@@ -61,7 +61,8 @@ const MemberView = ({members, updateMemberState}) => {
   const [member, setMember] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:8000/members/${id}`)
+    fetch(`${process.env.REACT_APP_DA_API_URL}/members/${id}/`)
+    // fetch(`http://localhost:8000/members/${id}`)
       .then(res => res.json())
       .then( items => setMember(items))
     }, [])
@@ -69,7 +70,8 @@ const MemberView = ({members, updateMemberState}) => {
   console.log(member)
 
   const deleteMember = (id) => {
-      axios.delete(`http://localhost:8000/members/${id}`)
+      // axios.delete(`http://localhost:8000/members/${id}`)
+      axios.delete(`${process.env.REACT_APP_DA_API_URL}/members/${id}/`)
       .then(res => {
           console.log(res)
           updateMemberState(id)

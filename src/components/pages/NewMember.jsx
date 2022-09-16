@@ -37,7 +37,8 @@ const NewMember = ({addMember, closeModal}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData)
-        axios.post('http://localhost:8000/members/', formData)
+        axios.post(`${process.env.REACT_APP_DA_API_URL}/members/`, formData)
+        // axios.post('http://localhost:8000/members/', formData)
         .then(res => {
             setFormData(initialState)
             addMember({...res.data})

@@ -38,8 +38,9 @@ const handleChange = (e) => {
 const handleSubmit = (e) => {
   e.preventDefault()
   console.log(formData)
-  axios.post('http://localhost:8000/spells/',
-    {...formData, members:[formData.members]}
+  // axios.post('http://localhost:8000/spells/',
+  axios.post(`${process.env.REACT_APP_DA_API_URL}/spells/`,
+  {...formData, members:[formData.members]}
     )
     .then(res => {
       setFormData(initialState)

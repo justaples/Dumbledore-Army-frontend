@@ -41,7 +41,8 @@ const SpellEdit = ({setSpells}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
-    axios.put(`http://localhost:8000/spells/${id}/`, formData)
+    // axios.put(`http://localhost:8000/spells/${id}/`, formData)
+    axios.put(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`, formData)
     .then(res => {
       setFormData(initialState)
       window.location.reload()
@@ -50,7 +51,8 @@ const SpellEdit = ({setSpells}) => {
   }
 
   useEffect(() =>{
-    axios.get(`http://localhost:8000/spells/${id}/`)
+    // axios.get(`http://localhost:8000/spells/${id}/`)
+    axios.get(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`)
     .then(res =>{
         setFormData(res.data)
     })

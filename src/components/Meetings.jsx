@@ -59,7 +59,8 @@ const Meetings = () => {
 const [meetings, setMeetings] = useState([])
 
 useEffect(() => {
-    fetch('http://localhost:8000/meetings')
+    // fetch('http://localhost:8000/meetings')
+    fetch(`${process.env.REACT_APP_DA_API_URL}/meetings`)
     .then(res => res.json())
     .then( items => setMeetings(items))
   }, [])

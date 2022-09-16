@@ -40,7 +40,7 @@ const MemberEdit = ({setMembers}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
-    axios.put(`http://localhost:8000/members/${id}/`, formData)
+    axios.put(`${process.env.REACT_APP_DA_API_URL}/members/${id}/`, formData)
     .then(res => {
       setFormData(initialState)
       window.location.reload()
@@ -49,7 +49,7 @@ const MemberEdit = ({setMembers}) => {
   }
 
     useEffect(() =>{
-      axios.get(`http://localhost:8000/members/${id}/`)
+      axios.get(`${process.env.REACT_APP_DA_API_URL}/members/${id}/`)
       .then(res =>{
           setFormData(res.data)
       })

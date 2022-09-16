@@ -64,21 +64,16 @@ const SpellView = ({spells, updateSpellState}) => {
   const [members, setMembers] = useState([])
   
   useEffect(() => {
-    fetch(`http://localhost:8000/spells/${id}`)
+    // fetch(`http://localhost:8000/spells/${id}`)
+    fetch(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`)
     .then(res => res.json())
     .then( items => setSpell(items))
   }, [])
   
 
-  useEffect(() => {
-  fetch('http://localhost:8000/members')
-  .then(res => res.json())
-  .then( items => setMembers(items))
-  }, [])
-
-
   const deleteSpell = (id) => {
-    axios.delete(`http://localhost:8000/spells/${id}`)
+    // axios.delete(`http://localhost:8000/spells/${id}`)
+    axios.delete(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`)
     .then(res => {
       console.log(res)
       updateSpellState(id)

@@ -1,6 +1,6 @@
 import tokenService from "./tokenService";
 
-const BASE_URL = 'http://localhost:8000/';
+const BASE_URL = `${process.env.REACT_APP_DA_API_URL}/`;
 
 function login(creds){
   return fetch(BASE_URL + 'login/', {

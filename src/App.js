@@ -20,13 +20,15 @@ function App() {
   const [members, setMembers] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:8000/spells')
+    // fetch('http://localhost:8000/spells')
+    fetch(`${process.env.REACT_APP_DA_API_URL}/spells`)
     .then(res => res.json())
     .then( items => setSpells(items))
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:8000/members')
+    // fetch('http://localhost:8000/members')
+    fetch(`${process.env.REACT_APP_DA_API_URL}/members`)
     .then(res => res.json())
     .then( items => setMembers(items))
   }, [])
