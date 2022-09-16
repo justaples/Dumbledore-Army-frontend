@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Member from './Member'
 import styled from 'styled-components'
 import Modal from 'react-modal/lib/components/Modal'

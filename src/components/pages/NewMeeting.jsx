@@ -11,7 +11,7 @@ const Form = styled.div`
 
 const NewMeeting = () => {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [meetings, setMeetings] = useState([])
   
   useEffect(() => {

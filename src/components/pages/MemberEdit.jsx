@@ -21,7 +21,7 @@ const Form = styled.div`
 const MemberEdit = ({setMembers}) => {
 
   let {id} = useParams()
-  let navigate = useNavigate()
+  // let navigate = useNavigate()
 
   const initialState = {
       name: '',
@@ -53,7 +53,7 @@ const MemberEdit = ({setMembers}) => {
       .then(res =>{
           setFormData(res.data)
       })
-    },[])
+    },[id])
 
   return (
     <Form>

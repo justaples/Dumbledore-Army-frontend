@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 import Modal from 'react-modal/lib/components/Modal'
@@ -65,7 +65,7 @@ const MemberView = ({members, updateMemberState}) => {
     // fetch(`http://localhost:8000/members/${id}`)
       .then(res => res.json())
       .then( items => setMember(items))
-    }, [])
+    }, [id])
 
   console.log(member)
 

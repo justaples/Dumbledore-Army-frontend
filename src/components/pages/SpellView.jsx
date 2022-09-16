@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 import Modal from 'react-modal/lib/components/Modal'
-import MembersInSpells from '../MembersInSpells'
+// import MembersInSpells from '../MembersInSpells'
 import SpellEdit from './SpellEdit'
 
 const Spell = styled.div`
@@ -61,14 +61,14 @@ const SpellView = ({spells, updateSpellState}) => {
   let navigate = useNavigate()
 
   const [spell, setSpell] = useState([])
-  const [members, setMembers] = useState([])
+  // const [members, setMembers] = useState([])
   
   useEffect(() => {
     // fetch(`http://localhost:8000/spells/${id}`)
     fetch(`${process.env.REACT_APP_DA_API_URL}/spells/${id}/`)
     .then(res => res.json())
     .then( items => setSpell(items))
-  }, [])
+  }, [id])
   
 
   const deleteSpell = (id) => {

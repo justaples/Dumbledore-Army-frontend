@@ -21,7 +21,7 @@ const Form = styled.div`
 
 const SpellEdit = ({setSpells}) => {
   let {id} = useParams()
-  let navigate = useNavigate()
+  // let navigate = useNavigate()
 
   const initialState = {
     spell: '',
@@ -56,7 +56,7 @@ const SpellEdit = ({setSpells}) => {
     .then(res =>{
         setFormData(res.data)
     })
-  },[])
+  },[id])
 
   return (
     <Form>
