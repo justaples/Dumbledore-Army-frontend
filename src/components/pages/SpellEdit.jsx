@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useNavigate} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -21,7 +21,7 @@ const Form = styled.div`
 
 const SpellEdit = ({setSpells}) => {
   let {id} = useParams()
-  let navigate = useNavigate()
+  // let navigate = useNavigate()
 
   const initialState = {
     spell: '',
